@@ -78,14 +78,14 @@ RUN apt-get update && apt-get -y --no-install-recommends install \
   syslog-ng-core \
   syslog-ng-mod-redis \
   && rm -rf /var/lib/apt/lists/* \
-  && curl https://www.dovecot.org/releases/2.3/dovecot-$DOVECOT_VERSION.tar.gz | tar xvz  \
+  && curl -L https://www.dovecot.org/releases/2.3/dovecot-$DOVECOT_VERSION.tar.gz | tar xvz  \
   && cd dovecot-$DOVECOT_VERSION \
   && ./configure --with-solr --with-mysql --with-ldap --with-lzma --with-lz4 --with-ssl=openssl --with-notify=inotify --with-storages=mdbox,sdbox,maildir,mbox,imapc,pop3c --with-bzlib --with-zlib --enable-hardening \
   && make -j3 \
   && make install \
   && make clean \
   && cd .. && rm -rf dovecot-$DOVECOT_VERSION \
-  && curl https://pigeonhole.dovecot.org/releases/2.3/dovecot-2.3-pigeonhole-$PIGEONHOLE_VERSION.tar.gz | tar xvz  \
+  && curl -L https://pigeonhole.dovecot.org/releases/2.3/dovecot-2.3-pigeonhole-$PIGEONHOLE_VERSION.tar.gz | tar xvz  \
   && cd dovecot-2.3-pigeonhole-$PIGEONHOLE_VERSION \
   && ./configure \
   && make -j3 \
